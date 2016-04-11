@@ -2,7 +2,7 @@ this.Garages = React.createClass({
   getInitialState: function() {
     return {
       garages: this.props.data
-    }
+    };
   },
 
   render: function() {
@@ -35,7 +35,12 @@ this.Garages = React.createClass({
 
 this.GarageForm = React.createClass({
   getInitialState: function() {
-    return { name: '', car_type: '', year: ''}
+    return { name: '', car_type: '', year: ''};
+  },
+
+  handleChange: function(e) {
+    var name = e.target.name;
+    this.setState({name: e.target.value})
   },
 
   render: function() {
@@ -43,7 +48,7 @@ this.GarageForm = React.createClass({
       <form className='form-inline'>
         <div className='form-group'>
           <input type='text' className='form-control' placeholder='Name' name='name'
-            value={this.state.name} />
+            value={this.state.name} onChange={this.handleChange} />
         </div>
         <div className='form-group'>
           <input type='text' className='form-control' placeholder='Car Type' name='car_type'
@@ -70,7 +75,7 @@ this.Garage = React.createClass({
   },
 
   render: function() {
-    return this.garageRow()
+    return this.garageRow();
   }
 })
 
