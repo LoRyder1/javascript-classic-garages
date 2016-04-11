@@ -39,8 +39,10 @@ this.GarageForm = React.createClass({
   },
 
   handleChange: function(e) {
-    var name = e.target.name;
-    this.setState({name: e.target.value})
+    var change = {};
+    targetName = e.target.name;
+    change[targetName] = e.target.value;
+    this.setState(change);
   },
 
   render: function() {
@@ -52,11 +54,11 @@ this.GarageForm = React.createClass({
         </div>
         <div className='form-group'>
           <input type='text' className='form-control' placeholder='Car Type' name='car_type'
-            value={this.state.car_type} />
+            value={this.state.car_type} onChange={this.handleChange} />
         </div>
         <div className='form-group'>
           <input type='number' className='form-control' placeholder='Year' name='year'
-            value={this.state.year} />
+            value={this.state.year} onChange={this.handleChange} />
         </div>
       </form>
     )
