@@ -34,12 +34,8 @@ this.Garages = React.createClass({
 })
 
 this.GarageForm = React.createClass({
-  getInitialState() {
-      return {
-          name: '',
-          car_type: '',
-          year: ''  
-      };
+  getInitialState: function() {
+    return { name: '', car_type: '', year: ''}
   },
 
   render: function() {
@@ -47,7 +43,15 @@ this.GarageForm = React.createClass({
       <form className='form-inline'>
         <div className='form-group'>
           <input type='text' className='form-control' placeholder='Name' name='name'
-            value={this.state.name}  ></input>
+            value={this.state.name} />
+        </div>
+        <div className='form-group'>
+          <input type='text' className='form-control' placeholder='Car Type' name='car_type'
+            value={this.state.car_type} />
+        </div>
+        <div className='form-group'>
+          <input type='number' className='form-control' placeholder='Year' name='year'
+            value={this.state.year} />
         </div>
       </form>
     )
