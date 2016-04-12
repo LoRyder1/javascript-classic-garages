@@ -12,11 +12,15 @@ this.Garages = React.createClass({
   },
 
   deleteCar: function(car) {
-    console.log("hey");
+    garages = this.state.garages.slice();
+    index = garages.indexOf(car);
+    garages.splice(index, 1);
+    this.replaceState({garages: garages});
   },
 
   render: function() {
     var el = this;
+    var items = this.state.garages;
 
     return (
       <div className='garages'>
@@ -34,7 +38,7 @@ this.Garages = React.createClass({
           </tr>
           </thead>
           <tbody>
-          {this.state.garages.map(function(car, i){
+          {items.map(function(car, i) {
             return <Garage car={car} key={i} handleDeleteCar={el.deleteCar} />
           })}
           </tbody>
@@ -107,8 +111,6 @@ this.Garage = React.createClass({
       url: "/garages/" + this.props.car.id,
       dataType: 'JSON'
     });
-
-    console.log(request);
 
     request.done( () => {
       this.props.handleDeleteCar(this.props.car)
