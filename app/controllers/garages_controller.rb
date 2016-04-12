@@ -3,6 +3,15 @@ class GaragesController < ApplicationController
     @garages = Garage.all
   end
 
+  def update
+    @garage = Garage.find(params[:id])
+    if @garage.update(garage_params)
+      render json: @garage
+    else
+      render json: @garage.errors, status: :unprocessable_entity
+    end
+  end
+
   def create
     @garage = Garage.new(garage_params)
 
