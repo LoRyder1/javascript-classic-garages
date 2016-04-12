@@ -5,16 +5,24 @@ this.Garages = React.createClass({
     };
   },
 
-  addRecord: function(record) {
-    console.log("addRecord");
+  addCar: function(car) {
+    garages = this.state.garages.slice();
+    garages.push(car);
+    this.setState({garages: garages});
+  },
+
+  deleteCar: function(car) {
+    console.log("hey");
   },
 
   render: function() {
+    var el = this;
+
     return (
       <div className='garages'>
         <h2 className='name'>Garages</h2>
         <div className='row'></div>
-        <GarageForm handleNewRecord={this.addRecord} />
+        <GarageForm handleNewCar={this.addCar} />
         <hr></hr>
         <table className='table table-bordered'>
           <thead>
@@ -27,7 +35,7 @@ this.Garages = React.createClass({
           </thead>
           <tbody>
           {this.state.garages.map(function(car, i){
-            return <Garage car={car} key={i} />
+            return <Garage car={car} key={i} handleDeleteCar={el.deleteCar} />
           })}
           </tbody>
         </table>
@@ -57,9 +65,10 @@ this.GarageForm = React.createClass({
       dataType: 'JSON',
       data: {garage: this.state}
     });
+
     // An arrow function expression lexically binds the 'this' value. Arrow fxns are anonymous
     request.done( (data) => {
-      this.props.handleNewRecord(data);
+      this.props.handleNewCar(data);
       this.setState(this.getInitialState());
     });
 
@@ -87,12 +96,34 @@ this.GarageForm = React.createClass({
 })
 
 this.Garage = React.createClass({
+  getInitialState: function() {
+    return null;
+  }, 
+
+  handleDelete: function(e) {
+    e.preventDefault();
+    var request = $.ajax({
+      method: 'DELETE',
+      url: "/garages/" + this.props.car.id,
+      dataType: 'JSON'
+    });
+
+    console.log(request);
+
+    request.done( () => {
+      this.props.handleDeleteCar(this.props.car)
+    });
+
+  },
+
   garageRow: function() {
     return (
       <tr>
         <td> {this.props.car.name} </td>
         <td> {this.props.car.car_type} </td>
         <td> {this.props.car.year} </td>
+        <td> <a className="btn btn-danger" onClick={this.handleDelete}>Delete</a>
+        </td>
       </tr>
     )
   },

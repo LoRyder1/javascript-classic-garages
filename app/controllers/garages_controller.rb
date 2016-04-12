@@ -13,6 +13,12 @@ class GaragesController < ApplicationController
     end
   end
 
+  def destroy
+    @garage = Garage.find(params[:id])
+    # @garage.destroy
+    head :no_content
+  end
+
   private
   def garage_params
     params.require(:garage).permit(:name, :car_type, :year)
