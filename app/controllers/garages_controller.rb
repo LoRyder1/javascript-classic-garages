@@ -24,7 +24,7 @@ class GaragesController < ApplicationController
 
   def destroy
     @garage = Garage.find(params[:id])
-    # @garage.destroy
+    @garage.destroy
     head :no_content
   end
 
