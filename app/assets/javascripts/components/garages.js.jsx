@@ -24,7 +24,7 @@ this.Garages = React.createClass({
 
     return (
       <div className='garages'>
-        <h2 className='name'>Garages</h2>
+        <h2 className='name'>Garage</h2>
         <div className='row'></div>
         <GarageForm handleNewCar={this.addCar} />
         <hr></hr>
@@ -92,7 +92,7 @@ this.GarageForm = React.createClass({
         <div className='form-group'>
           <input type='number' className='form-control' placeholder='Year' name='year'
             value={this.state.year} onChange={this.handleChange} />
-        <button type='submit' className='btn btn-primary'>Create record</button>
+        <button type='submit' className='btn btn-primary'>Add Car</button>
         </div>
       </form>
     )
@@ -101,8 +101,13 @@ this.GarageForm = React.createClass({
 
 this.Garage = React.createClass({
   getInitialState: function() {
-    return null;
-  }, 
+    return { edit: false }
+  },
+
+  handleToggle: function(e) {
+    e.preventDefault();
+    this.setState({edit: !this.state.edit })
+  },
 
   handleDelete: function(e) {
     e.preventDefault();
@@ -118,20 +123,45 @@ this.Garage = React.createClass({
 
   },
 
+  garageForm: function() {
+    return (
+      <tr>
+        <td>
+          <input className="form-control" type="text" defaultValue={this.props.car.name} ref="name" />
+        </td>
+        <td>
+          <input className="form-control" type="text" defaultValue={this.props.car.car_type} ref="car_type" />
+        </td>
+        <td>
+          <input className="form-control" type="number" defaultValue={this.props.car.year} ref="year" />
+        </td>
+        <td>
+          <a className='btn btn-default' onClick={this.handleEdit}>Update</a>
+        </td>
+      </tr>
+    )
+  },
+
   garageRow: function() {
     return (
       <tr>
         <td> {this.props.car.name} </td>
         <td> {this.props.car.car_type} </td>
         <td> {this.props.car.year} </td>
-        <td> <a className="btn btn-danger" onClick={this.handleDelete}>Delete</a>
+        <td>
+          <a className="btn btn-default" onClick={this.handleToggle}>Edit</a>
+          <a className="btn btn-danger" onClick={this.handleDelete}>Delete</a>
         </td>
       </tr>
     )
   },
 
   render: function() {
-    return this.garageRow();
+    if (this.state.edit) {
+      return this.garageForm();
+    } else {
+      return this.garageRow();
+    }
   }
 })
 
