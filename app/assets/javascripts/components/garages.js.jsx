@@ -5,12 +5,16 @@ this.Garages = React.createClass({
     };
   },
 
+  addRecord: function(record) {
+    console.log("addRecord");
+  },
+
   render: function() {
     return (
       <div className='garages'>
         <h2 className='name'>Garages</h2>
         <div className='row'></div>
-        <GarageForm />
+        <GarageForm handleNewRecord={this.addRecord} />
         <hr></hr>
         <table className='table table-bordered'>
           <thead>
@@ -45,9 +49,25 @@ this.GarageForm = React.createClass({
     this.setState(change);
   },
 
+  handleSubmit: function(e) {
+
+    var request = $.ajax({
+      method: 'POST',
+      url: "/garages",
+      dataType: 'JSON',
+      data: {garage: this.state}
+    });
+    // An arrow function expression lexically binds the 'this' value. Arrow fxns are anonymous
+    request.done( (data) => {
+      this.props.handleNewRecord(data);
+      this.setState(this.getInitialState());
+    });
+
+  },
+
   render: function() {
     return (
-      <form className='form-inline'>
+      <form className='form-inline' onSubmit={this.handleSubmit}>
         <div className='form-group'>
           <input type='text' className='form-control' placeholder='Name' name='name'
             value={this.state.name} onChange={this.handleChange} />
@@ -59,6 +79,7 @@ this.GarageForm = React.createClass({
         <div className='form-group'>
           <input type='number' className='form-control' placeholder='Year' name='year'
             value={this.state.year} onChange={this.handleChange} />
+        <button type='submit' className='btn btn-primary'>Create record</button>
         </div>
       </form>
     )
