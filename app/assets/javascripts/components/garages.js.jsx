@@ -96,19 +96,20 @@ this.GarageForm = React.createClass({
   },
 
   render: function() {
+    var curState = this.state;
     return (
       <form className='form-inline' onSubmit={this.handleSubmit}>
         <div className='form-group'>
           <input type='text' className='form-control' placeholder='Name' name='name'
-            value={this.state.name} onChange={this.handleChange} />
+            value={curState.name} onChange={this.handleChange} />
         </div>
         <div className='form-group'>
           <input type='text' className='form-control' placeholder='Car Type' name='car_type'
-            value={this.state.car_type} onChange={this.handleChange} />
+            value={curState.car_type} onChange={this.handleChange} />
         </div>
         <div className='form-group'>
           <input type='number' className='form-control' placeholder='Year' name='year'
-            value={this.state.year} onChange={this.handleChange} />
+            value={curState.year} onChange={this.handleChange} />
         <button type='submit' className='btn btn-primary' disabled={!this.valid()}>Add Car</button>
         </div>
       </form>
@@ -151,6 +152,7 @@ this.Garage = React.createClass({
       car_type: ReactDOM.findDOMNode(this.refs.car_type).value,
       year: ReactDOM.findDOMNode(this.refs.year).value
     }
+
     var request = $.ajax({
       method: "PUT",
       url: "/garages/" + this.props.car.id,
@@ -165,16 +167,18 @@ this.Garage = React.createClass({
   },
 
   garageForm: function() {
+    var propCar = this.props.car;
+
     return (
       <tr>
         <td>
-          <input className="form-control" type="text" defaultValue={this.props.car.name} ref="name" />
+          <input className="form-control" type="text" defaultValue={propCar.name} ref="name" />
         </td>
         <td>
-          <input className="form-control" type="text" defaultValue={this.props.car.car_type} ref="car_type" />
+          <input className="form-control" type="text" defaultValue={propCar.car_type} ref="car_type" />
         </td>
         <td>
-          <input className="form-control" type="number" defaultValue={this.props.car.year} ref="year" />
+          <input className="form-control" type="number" defaultValue={propCar.year} ref="year" />
         </td>
         <td>
           <a className="btn btn-default" onClick={this.handleEdit}>Update</a>
@@ -185,11 +189,13 @@ this.Garage = React.createClass({
   },
 
   garageRow: function() {
+    var propCar = this.props.car;
+
     return (
       <tr>
-        <td> {this.props.car.name} </td>
-        <td> {this.props.car.car_type} </td>
-        <td> {this.props.car.year} </td>
+        <td> {propCar.name} </td>
+        <td> {propCar.car_type} </td>
+        <td> {propCar.year} </td>
         <td>
           <a className="btn btn-default" onClick={this.handleToggle}>Edit</a>
           <a className="btn btn-danger" onClick={this.handleDelete}>Delete</a>
