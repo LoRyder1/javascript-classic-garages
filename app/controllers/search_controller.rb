@@ -4,5 +4,6 @@ class SearchController < ApplicationController
       @cars = []
     else
       @cars = Garages.search params[:q]
+    end
   end
 end
