@@ -9,3 +9,4 @@ class CreateGarages < ActiveRecord::Migration
     end
   end
 end
+
