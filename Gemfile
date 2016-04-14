@@ -32,6 +32,10 @@ gem 'bootstrap-sass', '~> 3.3.6'
 # react frontend
 gem 'react-rails', '~> 1.0'
 
+# elasticsearch
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
