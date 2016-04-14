@@ -5,4 +5,4 @@ class Garage < ActiveRecord::Base
   include Elasticsearch::Model::Callbacks
 end
 
-Garage.import
+
