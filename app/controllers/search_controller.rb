@@ -3,7 +3,7 @@ class SearchController < ApplicationController
     if params[:q].nil?
       @cars = []
     else
-      @cars = Garages.search params[:q]
+      @cars = Garage.search params[:q]
     end
   end
 end

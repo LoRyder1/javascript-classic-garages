@@ -3,6 +3,10 @@ class GaragesController < ApplicationController
     @garages = Garage.all
   end
 
+  def show
+    @car = Garage.find(params[:id])
+  end
+
   def update
     @garage = Garage.find(params[:id])
     if @garage.update(garage_params)

@@ -12,7 +12,7 @@
   <% @cars.each do |car| %>
   <li>
     <h3>
-        <%= link_to car.name, controller: "garages", action: "show", id: car._id %>
+        <%= link_to car.name, controller: "garages", action: "show", id: car.id %>
     </h3>
   </li>
   <% end %>
