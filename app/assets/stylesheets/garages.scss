@@ -13,3 +13,30 @@ $primary-font: Verdana, Geneva, sans-serif;
   background-color: white;
   font-family: $primary-font;
 }
+
+header {
+  position:fixed;
+  width:100%;
+  top:0;
+  left:0;
+  height:40px;
+  background-color:#E4E4E4;
+  overflow:hidden;
+  border-bottom: 2px solid black;
+  nav {
+    max-width:1100px;
+    margin:auto;
+    text-align:right;
+  };
+  a, a:visited {
+    transition: all, 0.2s ease-in-out;
+    text-decoration:none;
+    display:inline-block;
+    padding:12px;
+    color:#111;
+    &:hover {
+      color:#111;
+      background-color:lightgray;
+    }
+  }
+}
