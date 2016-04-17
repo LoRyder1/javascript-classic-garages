@@ -2,6 +2,15 @@ Rails.application.routes.draw do
   resources :garages
 
   get 'search', to: 'search#search'
+
+  post "/login" => "sessions#create", as: "login"
+  get "/login" => "sessions#new"
+  delete "/logout" => "sessions#destroy", as: "logout"
+
+  get "/user_doc" => "users#doc", as: "doc"
+
+  resources :users, only: [:new, :create]
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
