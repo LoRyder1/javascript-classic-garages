@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:user_email], params[:user_password])
     if user
       session[:user_id] = user.id
-      redirect_to timeentries_path
+      redirect_to garages_path
     else
       flash[:error] = "Invalid email or password"
       render 'new'
@@ -20,6 +20,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session.clear
-    redirect_to root_path
+    redirect_to garages_path
   end
 end
