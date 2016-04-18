@@ -1,0 +1,15 @@
+<h1>Sign In</h1>
+
+<div class="wrap-center">
+  <% if flash[:error] %>
+    <p>
+      <%= flash[:error] %>
+    </p>
+  <% end %>
+
+  <%= form_tag login_path do %>
+    <%= text_field_tag :user_email, '', placeholder: "email" %>
+    <%= password_field_tag :user_password, '', placeholder: "password" %>
+    <%= submit_tag "Login" %>
+  <% end %>
+</div>
