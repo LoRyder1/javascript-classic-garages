@@ -36,6 +36,8 @@ gem 'react-rails', '~> 1.0'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 
+gem 'dalli'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
