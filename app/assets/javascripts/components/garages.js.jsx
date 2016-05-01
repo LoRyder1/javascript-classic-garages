@@ -193,7 +193,9 @@ this.Garage = React.createClass({
 
     return (
       <tr>
-        <td> {propCar.name} </td>
+        <td> 
+          <a href="https://www.google.com">{propCar.name}</a>
+        </td>
         <td> {propCar.car_type} </td>
         <td> {propCar.year} </td>
         <td>

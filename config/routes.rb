@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :garages do
-    resouces :comments
+    resources :comments
   end
 
   get 'search', to: 'search#search'
