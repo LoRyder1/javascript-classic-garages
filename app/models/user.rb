@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :timeentries
+  has_many :garages
 
   attr_reader :entered_password
 
