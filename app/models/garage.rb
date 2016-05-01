@@ -1,6 +1,8 @@
 require 'elasticsearch/model'
 
 class Garage < ActiveRecord::Base
+  has_many :comments
+
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
