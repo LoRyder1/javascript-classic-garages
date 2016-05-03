@@ -24,6 +24,7 @@
     <strong>Comment:</strong>
     <%= comment.body %>
   </p>
+  <%= link_to 'Destroy Comment', [comment.garage, comment], method: :delete, data: { confirm: "Are you sure?" }  %>
 <% end %>
 
 <h2>Add a comment:</h2>

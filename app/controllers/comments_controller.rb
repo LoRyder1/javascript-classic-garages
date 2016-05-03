@@ -1,5 +1,4 @@
-class CommentsController < ApplicationController
-  
+class CommentsController < ApplicationController  
   def create
     @car = Garage.find(params[:garage_id])
     @comment = @car.comments.create(comment_params)
