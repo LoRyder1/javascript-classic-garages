@@ -10,3 +10,5 @@ The benefits of React
 4. The simpler conceptual model of always rendering the entire UI from a given stat is akin the server side rendering of HTML pages, that Rails programmers are more familiar with. 
 5. The documentation is very good, and it's got significant traction. 
 
+Given that React is just about the View part of the client UI, or more specifically, view components, it seems especially suitable for integration into the Rails ecosystem to help build better rish JavaScript UIs. The React website contains a simple tutorial utilizing Node for the backend. Suppose you want to use Rails for the backend? 
+
