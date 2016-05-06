@@ -40,6 +40,8 @@ gem 'dalli'
 
 gem 'redis'
 
+gem 'redis-namespace'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
