@@ -38,6 +38,8 @@ gem 'elasticsearch-rails'
 
 gem 'dalli'
 
+gem 'redis'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
