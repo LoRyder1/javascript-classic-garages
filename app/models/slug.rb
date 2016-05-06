@@ -25,11 +25,11 @@ class Slug
     end
 
     def hash
-      "article_ids"
+      "garage_ids"
     end
 
     def set(id)
-      "article_slugs_#{id}"
+      "garage_slugs_#{id}"
     end
   end
 end

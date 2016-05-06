@@ -34,11 +34,11 @@ class GaragesController < ApplicationController
 
   protected
 
-  def find_article
+  def find_car
     if id = Slug[params[:id]]
-      @article = Article.find(id)
+      @article = Garage.find(id)
     else
-      @article = Article.find(params[:id])
+      @article = Garage.find(params[:id])
     end
   rescue ActiveRecord::RecordNotFound
     redirect_to root_url
