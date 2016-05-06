@@ -11,9 +11,6 @@ class Garage < ActiveRecord::Base
     "#{id}-#{slug}"
   end
 
-
-
-
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
