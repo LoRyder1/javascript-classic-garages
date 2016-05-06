@@ -32,6 +32,18 @@ class GaragesController < ApplicationController
     head :no_content
   end
 
+  protected
+
+  def find_article
+    if id = Slug[params[:id]]
+      @article = Article.find(id)
+    else
+      @article = Article.find(params[:id])
+    end
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_url
+  end
+
   private
   def garage_params
     params.require(:garage).permit(:name, :car_type, :year)
