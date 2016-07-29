@@ -4,7 +4,7 @@ class Garage < ActiveRecord::Base
   has_many :comments
 
   def slug
-    title.downcase.gsub(" ", "-")
+    name.downcase.gsub(" ", "-")
   end
 
   def to_param
@@ -71,5 +71,3 @@ end
 
 
   Garage.import
-
-# Garage.import
