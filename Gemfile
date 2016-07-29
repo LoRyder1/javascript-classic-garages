@@ -42,6 +42,8 @@ gem 'redis'
 
 gem 'redis-namespace'
 
+gem 'bonsai-elasticsearch-rails'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
