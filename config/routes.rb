@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :garages do
     resources :comments
   end
@@ -11,8 +12,9 @@ Rails.application.routes.draw do
 
   get "/user_doc" => "users#doc", as: "doc"
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:home, :new, :create]
   
+  root 'users#home'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
