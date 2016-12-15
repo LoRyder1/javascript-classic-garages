@@ -38,5 +38,7 @@ $(document).ready(function() {
     })
   };
 
-  
+  var triggerSMSToken = function() {
+    $.get("/authy/send_token")
+  };
 })
