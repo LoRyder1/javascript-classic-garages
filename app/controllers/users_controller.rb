@@ -11,6 +11,14 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
+
+      authy = Authy::API.register_user(
+        email: @user.email, 
+        cellphone: @user.phone_number, 
+        country_code: @user.country_code
+        )
+      @user.update(authy_id: authy.id)
+      
       redirect_to garages_path
     else
       render 'new'
