@@ -17,4 +17,18 @@ $(document).ready(function() {
       }
     })
   };
+
+  var checkForOneTouch = function() {
+    $.get( "/authy/status", function(data) {
+
+      if (data == 'approved') {
+        window.location.href = "/account";
+      } else if (data == 'denied') {
+        showTokenForm();
+        triggerSMSToken();
+      } else {
+        setTimeout(checkForOneTouch, 2000);
+      }
+    })
+  };
 })
