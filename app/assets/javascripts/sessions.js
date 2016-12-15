@@ -7,6 +7,14 @@ $(document).ready(function() {
   })
 
   var attemptOneTouchVerification = function(form) {
-    
-  }
+    $.post("/sessions", form, function(data) {
+      $('#authy-modal').modal({backdrop:'static'},'show')
+      if (data.success) {
+        $('.auth-ot').fadeIn()
+        checkForOneTouch();
+      } else {
+        $('.auth-token').fadeIn()
+      }
+    })
+  };
 })
