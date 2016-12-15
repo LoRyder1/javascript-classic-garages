@@ -31,4 +31,12 @@ $(document).ready(function() {
       }
     })
   };
+
+  var showTokenForm = function() {
+    $('.auth-ot').fadeOut(function() {
+      $('.auth-token').fadeIn('slow')
+    })
+  };
+
+  
 })
