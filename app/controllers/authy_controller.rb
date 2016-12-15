@@ -18,4 +18,17 @@ class AuthyController < ApplicationController
     end
     render plain: 'OK'
   end
+
+  def verify
+    @user = User.find(session[:pre_2fa_auth_user_id])
+    token = Authy::API.verify(:id @user.authy_id, token: params[:token])
+    if token.ok?
+      session[:user_id] = @user.id
+      session[:pre_2fa_auth_user_id] = nil
+      redirect_to account_path
+    else
+      flash.now[:danger] = "Incorrect code, please try again"
+      redirect_to new_session_path
+    end
+  end
 end
