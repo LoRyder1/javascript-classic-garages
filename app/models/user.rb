@@ -1,17 +1,18 @@
+require "net/http"
+require "uri"
+
 class User < ActiveRecord::Base
   has_secure_password
   has_many :garages
 
   # attr_reader :entered_password
 
-  # validates :username, presence: true, length: { minimum: 3 }
-  # validates :email, presence: true, uniqueness: true, format: /.+@.+\..+/
-  # validates :entered_password, presence: true, length: { minimum: 6 }
-  # validates :password, confirmation: true
-  # validates :password_confirmation, presence: true
+  enum authy_status: [:unverified, :onetouch, :sms, :token, :approved, :denied]
+  validates :email,  presence: true, format: { with: /\A.+@.+$\Z/ }, uniqueness: true
+  # validates :name, presence: true
+  validates :country_code, presence: true
+  validates :phone_number, presence: true
 
-
-  
   # def password
   #   @password ||= BCrypt::Password.new(password_hash)
   # end

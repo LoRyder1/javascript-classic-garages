@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'search', to: 'search#search'
 
   post "/login" => "sessions#create", as: "login"
-  get "/login" => "sessions#new"
+  get "/login" => "sessions#new", as: "new_session"
   delete "/logout" => "sessions#destroy", as: "logout"
   get "sessions/two_factor"
 

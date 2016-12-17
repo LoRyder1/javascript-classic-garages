@@ -7,7 +7,7 @@ $(document).ready(function() {
   })
 
   var attemptOneTouchVerification = function(form) {
-    $.post("/sessions", form, function(data) {
+    $.post( "/sessions", form, function(data) {
       $('#authy-modal').modal({backdrop:'static'},'show')
       if (data.success) {
         $('.auth-ot').fadeIn()
@@ -20,7 +20,7 @@ $(document).ready(function() {
 
   var checkForOneTouch = function() {
     $.get( "/authy/status", function(data) {
-
+      
       if (data == 'approved') {
         window.location.href = "/account";
       } else if (data == 'denied') {

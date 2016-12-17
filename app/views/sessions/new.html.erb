@@ -1,15 +1,19 @@
-<h1>Sign In</h1>
+<%= render 'authy_modal' %>
+<h1>Welcome Back!</h1>
+<p>You never write. You never call. But we're glad you came, regardless! Be a pal and confirm your username and password, would you?</p>
 
-<div class="wrap-center">
-  <% if flash[:error] %>
-    <p>
-      <%= flash[:error] %>
-    </p>
-  <% end %>
+<%= form_tag login_path, id: "login-form" do %>
+  <div class="form-group">
+    <%= label_tag :email %>
+    <%= email_field_tag :user_email, @user.email, class: "form-control", placeholder: "you@yourdomain.com" %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :password %>
+    <%= password_field_tag :user_password, @user.password, class: "form-control" %>
+  </div>
+  <button class="btn btn-primary" type="submit">Log In</button>
+<% end -%>
 
-  <%= form_tag login_path do %>
-    <%= text_field_tag :user_email, '', placeholder: "email" %>
-    <%= password_field_tag :user_password, '', placeholder: "password" %>
-    <%= submit_tag "Login" %>
-  <% end %>
-</div>
+<% content_for :javascript do %>
+  <%= javascript_include_tag 'sessions', 'data-turbolinks-track' => true %>
+<% end %>

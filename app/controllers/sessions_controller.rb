@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    @user = User.new
     if logged_in?
       redirect_to root_path
     else
@@ -8,14 +9,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.authenticate(params[:user_email], params[:user_password])
-    if user
-      session[:user_id] = user.id
-      redirect_to garages_path
-    else
-      flash[:error] = "Invalid email or password"
-      render 'new'
-    end
+    # user = User.authenticate(params[:user_email], params[:user_password])
+    # if user
+    #   session[:user_id] = user.id
+    #   redirect_to garages_path
+    # else
+    #   flash[:error] = "Invalid email or password"
+    #   render 'new'
+    # end
 
     # Twilio api
 
@@ -23,7 +24,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:password])
       session[:pre_2fa_auth_user_id] = @user.id
 
-      #Try to verify with OneTouch
+      # Try to verify with OneTouch
       one_touch = Authy::OneTouch.send_approval_request(
         id: @user.authy_id,
         message: "Request to Login to Twilio demo app",
@@ -44,6 +45,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session.clear
+    flash[:notice] = "You have been logged out"
     redirect_to garages_path
   end
 end

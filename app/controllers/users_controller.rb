@@ -12,12 +12,12 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
 
-      # authy = Authy::API.register_user(
-      #   email: @user.email, 
-      #   cellphone: @user.phone_number, 
-      #   country_code: @user.country_code
-      #   )
-      # @user.update(authy_id: authy.id)
+      authy = Authy::API.register_user(
+        email: @user.email, 
+        cellphone: @user.phone_number, 
+        country_code: @user.country_code
+        )
+      @user.update(authy_id: authy.id)
       
       redirect_to garages_path
     else
@@ -29,8 +29,11 @@ class UsersController < ApplicationController
   end
 
   private
+
   def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation, :country_code, :phone_number)
+    params.require(:user).permit(
+      :username, :email, :password, :password_confirmation, :country_code, :phone_number
+    )
   end
 
   def redirect_if_logged_in
