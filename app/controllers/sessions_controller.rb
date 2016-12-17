@@ -9,17 +9,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # user = User.authenticate(params[:user_email], params[:user_password])
-    # if user
-    #   session[:user_id] = user.id
-    #   redirect_to garages_path
-    # else
-    #   flash[:error] = "Invalid email or password"
-    #   render 'new'
-    # end
-
-    # Twilio api
-
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
       session[:pre_2fa_auth_user_id] = @user.id
