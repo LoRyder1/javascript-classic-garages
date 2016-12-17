@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   post "/login" => "sessions#create", as: "login"
   get "/login" => "sessions#new"
   delete "/logout" => "sessions#destroy", as: "logout"
+  get "sessions/two_factor"
+
+  post "authy/callback" => 'authy#callback'
+  get "authy/status" => 'authy#one_touch_status'
+  post "authy/send_token"
+  post "authy/verify"
 
   get "/user_doc" => "users#doc", as: "doc"
 
