@@ -6,7 +6,10 @@ Rails.application.routes.draw do
 
   get 'search', to: 'search#search'
 
-  post "/login" => "sessions#create", as: "login"
+  # resources :sessions, only: [:new, :create]
+
+  # post "/login" => "sessions#create", as: "login"
+  post "/sessions" => "sessions#create", as: "sessions"
   get "/login" => "sessions#new", as: "new_session"
   delete "/logout" => "sessions#destroy", as: "logout"
   get "sessions/two_factor"
