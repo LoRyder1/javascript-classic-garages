@@ -46,8 +46,6 @@ gem 'redis-namespace'
 
 gem 'bonsai-elasticsearch-rails'
 
-gem 'rails_12factor'
-
 # Use Unicorn as the app server
 gem 'unicorn'
 
